@@ -1,0 +1,64 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (6.0.2.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+      zeitwerk (~> 2.2)
+    byebug (11.1.1)
+    concurrent-ruby (1.1.6)
+    equatable (0.6.1)
+    httparty (0.17.3)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
+    i18n (1.8.2)
+      concurrent-ruby (~> 1.0)
+    json (2.3.0)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2019.1009)
+    mini_portile2 (2.4.0)
+    minitest (5.14.0)
+    multi_xml (0.6.0)
+    necromancer (0.5.1)
+    nikkou (0.0.5)
+      activesupport
+      nokogiri
+      tzinfo
+    nokogiri (1.10.8-x64-mingw32)
+      mini_portile2 (~> 2.4.0)
+    pastel (0.7.3)
+      equatable (~> 0.6)
+      tty-color (~> 0.5)
+    thread_safe (0.3.6)
+    tty-color (0.5.1)
+    tty-cursor (0.7.1)
+    tty-prompt (0.20.0)
+      necromancer (~> 0.5.0)
+      pastel (~> 0.7.0)
+      tty-reader (~> 0.7.0)
+    tty-reader (0.7.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.7)
+      wisper (~> 2.0.0)
+    tty-screen (0.7.1)
+    tzinfo (1.2.6)
+      thread_safe (~> 0.1)
+    wisper (2.0.1)
+    zeitwerk (2.2.2)
+
+PLATFORMS
+  x64-mingw32
+
+DEPENDENCIES
+  byebug
+  httparty
+  json
+  nikkou
+  nokogiri
+  tty-prompt
+
+BUNDLED WITH
+   2.1.4
