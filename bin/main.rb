@@ -27,8 +27,8 @@ def showlist
     pastel = Pastel.new
     complete = pastel.on_green(" ")
     incomplete = pastel.on_red(" ")
-    bar = TTY::ProgressBar.new("Grabbing your favorite shows! [:bar]", total: 1000, width: 100, complete: complete, incomplete: incomplete)
-    (0...1000).each do |x|
+    bar = TTY::ProgressBar.new("Grabbing your favorite shows! [:bar]", total: 10, width: 100, complete: complete, incomplete: incomplete)
+    (0...10).each do |x|
         shows << show = @parsed_showlist.css('td.forum_thread_post')[x * 3].text
         bar.advance(1)
     end
@@ -58,16 +58,17 @@ def show_info
     show_info = {
         title: @parsed_page.css('td.section_post_header span').text,
         description: @parsed_page.css('td.show_info_banner_logo p').text,
-    }
+        poster: @parsed_page.css('td.show_info_main_logo').children.css('img').attribute('src').value,
+        imdb_rating: @parsed_page.css('td.show_info_rating_score div')[1].css('b span').text
+        }
     @output << show_info
     puts 'added info'
-    episodes_json
+    episodes_info
 end
 
-def episodes_json
+def episodes_info
     itemcount = @parsed_page.css('tr.forum_header_border').count - 1
     puts 'counted'
-    episodes = []
     (0..itemcount).each do |x|
         ep = {
         episode_name: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post')[1].css('a').text,
@@ -76,10 +77,8 @@ def episodes_json
         released: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post')[4].text,
         seeds: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post_end').text,
         }
-        episodes << ep
-        puts x
+        @output << ep
     end
-    @output << episodes
     json_output
 end
 
