@@ -4,55 +4,95 @@ require 'byebug'
 require 'json'
 require "tty-prompt"
 require 'nikkou'
+require 'tty-progressbar'
+require 'pastel'
+require 'tty-spinner'
 
 require_relative '../lib/shows.rb'
 
+def list_parser
+    spinner = TTY::Spinner.new("[:spinner] Parsing EZTV", format: :dots, success_mark: '+')
+    spinner.auto_spin
+    eztv = 'https://eztv.io/showlist/rating/'
+    unparsed_showlist = HTTParty.get(eztv)
+    @parsed_showlist = Nokogiri::HTML(unparsed_showlist.body)
+    spinner.success('(✔ Successful)')
+    spinner.error('(✖ Error)')
+    puts ''
+end
+
+def showlist
+    list_parser
+    shows = []
+    pastel = Pastel.new
+    complete = pastel.on_green(" ")
+    incomplete = pastel.on_red(" ")
+    bar = TTY::ProgressBar.new("Grabbing your favorite shows! [:bar]", total: 1000, width: 100, complete: complete, incomplete: incomplete)
+    (0...1000).each do |x|
+        shows << show = @parsed_showlist.css('td.forum_thread_post')[x * 3].text
+        bar.advance(1)
+    end
+    sleep(2)
+    puts `clear`
+    shows
+end
 
 
-# def number_of_shows
-#     total_shows = parsed_page.css('td.forum_thread_post').count / 3
-#     if total_shows == 0
-#         false
-#     else
-#         total_shows
-#     end
-# end
+def select_show
+    prompt = TTY::Prompt.new
+    show = prompt.select("Select a TV show?", showlist, filter: true, per_page: 20)
+    @series_link = 'https://eztv.io' + @parsed_showlist.search('a').text_includes(show).attribute('href').value
+    puts " Fantastic Choice! "
+    show_info
+end
 
-def parser
-    url = 'https://eztv.io/showlist/'
+def parsed_show
+    url = @series_link
     unparsed_page = HTTParty.get(url)
     @parsed_page = Nokogiri::HTML(unparsed_page.body)
 end
 
-def showlist
-    parser
-    total_shows = @parsed_page.css('td.forum_thread_post').count / 3
-    shows = []
-    # (0..total_shows).each do |x|
-    #     show = {
-    #         show_title:  parsed_page.css('td.forum_thread_post')[x * 3].text,
-    #         show_url: 'https://eztv.io' + parsed_page.css('td.forum_thread_post')[x * 3].css('a').attribute('href').value
-    #     }
-    #     puts x
-    #     shows << show
-    # end
-    # shows_json = shows.to_json
-    # local_fname = 'showlist.json'
-    # local_file = open(local_fname, 'w')
-    # local_file.write(shows_json)
-    # local_file.close
-    (0..5).each do |x|
-        show = @parsed_page.css('td.forum_thread_post')[x * 3].text
-        shows << show
-    end
-    return shows
+def show_info
+    parsed_show
+    @output = []
+    show_info = {
+        title: @parsed_page.css('td.section_post_header span').text,
+        description: @parsed_page.css('td.show_info_banner_logo').text,
+    }
+    @output << show_info
+    puts 'added info'
+    episodes_json
 end
 
-def select_show
-    parser
-    prompt = TTY::Prompt.new
-    show = prompt.select("Select a TV show?", showlist, filter: true)
-    puts 'https://eztv.io' + @parsed_page.search('a').text_includes(show).attribute('href').value
+def episodes_json
+    itemcount = @parsed_page.css('tr.forum_header_border').count - 1
+    puts 'counted'
+    episodes = []
+    (0..itemcount).each do |x|
+        ep = {
+        episode_name: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post')[1].css('a').text,
+        magnet: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post')[2].css('a')[0].attribute('href').value,
+        size: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post')[3].text,
+        released: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post')[4].text,
+        seeds: @parsed_page.css('tr.forum_header_border')[x].css('td.forum_thread_post_end').text,
+        }
+        episodes << ep
+        puts x
+    end
+    @output << episodes
+    json_output
 end
+
+def json_output
+    magnets = @output.to_json
+    local_fname = 'bb.json'
+    local_file = open(local_fname, 'w')
+    local_file.write(magnets)
+    local_file.close
+end
+
+# def redo
+
+# end
 
 select_show
