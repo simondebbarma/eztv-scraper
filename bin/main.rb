@@ -57,7 +57,7 @@ def show_info
     @output = []
     show_info = {
         title: @parsed_page.css('td.section_post_header span').text,
-        description: @parsed_page.css('td.show_info_banner_logo').text,
+        description: @parsed_page.css('td.show_info_banner_logo p').text,
     }
     @output << show_info
     puts 'added info'
