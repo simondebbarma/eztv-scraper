@@ -20,8 +20,8 @@ def list_parser
   eztv = 'https://eztv.io/showlist/rating/'
   unparsed_showlist = HTTParty.get(eztv)
   @parsed_showlist = Nokogiri::HTML(unparsed_showlist.body)
-  spinner.success(@pastel.blue('(✔ Successful)'))
-  spinner.error(@pastel.red('(✖ Error)'))
+  spinner.success(@pastel.blue('(✔)'))
+  spinner.error(@pastel.red('(✖)'))
   puts ''
 end
 
@@ -42,7 +42,7 @@ end
 def select_show
   prompt = TTY::Prompt.new
   puts ''
-  show = prompt.select(@pastel.magenta(' Select a TV show?'), showlist, filter: true, per_page: 20)
+  show = prompt.select(@pastel.magenta('Select a TV show?'), showlist, filter: true, per_page: 20)
   @series_link = 'https://eztv.io' + @parsed_showlist.search('a').text_includes(show).attribute('href').value
   puts ' Fantastic Choice!'
   puts ''
@@ -50,7 +50,8 @@ def select_show
   puts ''
   episodes_info
   puts ''
-  puts @pastel.green(' ~ Thank you for using eztv-scraper! Fork the project and build upon it! ~')
+  puts @pastel.green(' ~ Thank you for using eztv-scraper! ~')
+  puts @pastel.green(' ~ Star this project on Github if you liked it ~')
 end
 
 def parsed_show
@@ -59,7 +60,7 @@ def parsed_show
   url = @series_link
   unparsed_page = HTTParty.get(url)
   @parsed_page = Nokogiri::HTML(unparsed_page.body)
-  spinner.success(@pastel.yellow('(✔ Gottem)'))
+  spinner.success(@pastel.yellow('(✔)'))
   spinner.error(@pastel.red('(✖ Something went wrong)'))
 end
 
@@ -70,10 +71,10 @@ def show_info
   spinner.auto_spin
   @output = []
   show_info = {
-    title: @parsed_page.css('td.section_post_header span').text,
-    description: @parsed_page.css('td.show_info_banner_logo p').text,
-    poster: @parsed_page.css('td.show_info_main_logo').children.css('img').attribute('src').value,
-    imdb_rating: @parsed_page.css('td.show_info_rating_score div')[1].css('b span').text
+    title: @parsed_page.css('td.section_post_header span')&.text,
+    description: @parsed_page.css('td.show_info_banner_logo p')&.text,
+    poster: '' + @parsed_page.css('td.show_info_main_logo').children.css('img')&.attribute('src')&.value,
+    imdb_rating: @parsed_page.css('td.show_info_rating_score div')[1].css('b span')&.text
   }
   @output << show_info
   spinner.success(@pastel.yellow('(✔)'))
@@ -84,14 +85,14 @@ def episodes_info
   spinner = TTY::Spinner.new('[:spinner] Pulling magnets', format: :dots, success_mark: '+')
   spinner.auto_spin
   episodes = @parsed_page.css('tr.forum_header_border')
-  epcount = episodes.count - 1
-  epcount.times do |x|
+  episodes.size.times do |n|
+    thread_posts = episodes[n].css('td.forum_thread_post')
     ep = {
-      episode_name: episodes[x].css('td.forum_thread_post')[1].css('a').text,
-      magnet: episodes[x].css('td.forum_thread_post')[2].css('a')[0].attribute('href').value,
-      size: episodes[x].css('td.forum_thread_post')[3].text,
-      released: episodes[x].css('td.forum_thread_post')[4].text,
-      seeds: episodes[x].css('td.forum_thread_post_end').text
+      episode_name: thread_posts[1].css('a')&.text,
+      magnet: thread_posts[2].css('a').first&.attribute('href')&.value.to_s,
+      size: thread_posts[3]&.text,
+      released: thread_posts[4]&.text,
+      seeds: episodes[n].css('td.forum_thread_post_end')&.text
     }
     @output << ep
   end
@@ -105,7 +106,7 @@ def json_output
   spinner = TTY::Spinner.new('[:spinner] Writing to /eztv-scraped', format: :dots, success_mark: '+')
   spinner.auto_spin
   magnets = JSON.pretty_generate(@output)
-  page_title = @parsed_page.css('td.section_post_header span').text
+  page_title = @parsed_page.css('td.section_post_header span').text.gsub(':', '')
   Dir.mkdir('./eztv-scraped') unless Dir.exist? './eztv-scraped'
   local_fname = './eztv-scraped/' + page_title + '.json'
   local_file = File.open(local_fname, 'w')
@@ -121,10 +122,23 @@ def welcome
   puts @pastel.blue(titlefont.write(' EZTV'))
   puts @pastel.blue(titlefont.write(' Scraper'))
   puts @pastel.blue(titlefont.write('                                      v0.1.0'))
-  puts @pastel.red(subtitlefont.write(' Fork it on GitHub'))
+  puts @pastel.red(subtitlefont.write(' Fork me on GitHub'))
   puts @pastel.yellow(' https://github.com/simonpeterdebbarma/eztv-scraper')
+  eztv_scrapper_info
   continue_seq
   select_show
+end
+
+def eztv_scrapper_info
+  puts ''
+  puts ' EZTV Scraper parses https://eztv.io and helps you download'
+  puts ' the magnets of all available episodes into a JSON file.'
+  puts ''
+  puts ' As there are over 6500+ shows on the website, parsing them can'
+  puts ' take a lot of time. Therefore to save time using this CLI app,'
+  puts ' you can browse only the top 1000 rated shows, ranked by IMDb.'
+  puts ''
+  puts @pastel.red(' It can take about 3-5 minutes to parse all the data.')
 end
 
 def continue_seq
