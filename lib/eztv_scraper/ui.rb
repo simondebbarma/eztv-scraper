@@ -1,16 +1,22 @@
 module UserInterface
   def welcome
-    titlefont = TTY::Font.new(:starwars)
-    subtitlefont = TTY::Font.new(:straight)
-    puts @pastel.blue(titlefont.write(' EZTV'))
-    puts @pastel.blue(titlefont.write(' Scraper'))
-    puts @pastel.blue(titlefont.write('                                      v0.1.0'))
-    sleep(2)
-    puts @pastel.red(subtitlefont.write(' Fork me on GitHub'))
-    puts @pastel.yellow(' https://github.com/simonpeterdebbarma/eztv-scraper')
-    eztv_scrapper_info
-    continue_seq
-    showlist
+    begin
+      success = true
+      titlefont = TTY::Font.new(:starwars)
+      subtitlefont = TTY::Font.new(:straight)
+      puts @pastel.blue(titlefont.write(' EZTV'))
+      puts @pastel.blue(titlefont.write(' Scraper'))
+      puts @pastel.blue(titlefont.write('                                      v0.1.0'))
+      sleep(2)
+      puts @pastel.red(subtitlefont.write(' Fork me on GitHub'))
+      puts @pastel.yellow(' https://github.com/simonpeterdebbarma/eztv-scraper')
+      eztv_scrapper_info
+      continue_seq
+      showlist
+      success
+    rescue
+      success = false
+    end
   end
 
   def show_prompt

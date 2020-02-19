@@ -1,7 +1,6 @@
 module Output
   def json_output
     puts
-    p @output
     spinner = TTY::Spinner.new('[:spinner] Writing to /eztv-scraped', format: :dots, success_mark: '+')
     spinner.auto_spin
     magnets = JSON.pretty_generate(@output)
