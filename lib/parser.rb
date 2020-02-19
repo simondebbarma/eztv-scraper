@@ -1,6 +1,6 @@
 module Parser
   def list_parser
-    puts ''
+    puts
     spinner = TTY::Spinner.new('[:spinner] Parsing EZTV', format: :dots, success_mark: '+')
     spinner.auto_spin
     @eztvurl = 'https://eztv.io/showlist/rating/'
@@ -8,7 +8,7 @@ module Parser
     @parsed_showlist = Nokogiri::HTML(unparsed_showlist.body)
     spinner.success(@pastel.blue('(✔)'))
     spinner.error(@pastel.red('(✖)'))
-    puts ''
+    puts
   end
 
   def parsed_show

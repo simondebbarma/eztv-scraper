@@ -10,10 +10,10 @@ require 'tty-spinner'
 require 'tty-font'
 require 'io/console'
 
-require_relative '../lib/ui.rb'
-require_relative '../lib/parser.rb'
-require_relative '../lib/shows.rb'
-require_relative '../lib/json.rb'
+require_relative '../ui.rb'
+require_relative '../parser.rb'
+require_relative '../shows.rb'
+require_relative '../json.rb'
 
 class EZTVScraper
   include UserInterface

@@ -9,13 +9,13 @@ module Showlist
       @shows << @parsed_showlist.css('td.forum_thread_post')[n * 3].text
       bar.advance(1)
     end
-    puts ''
+    puts
     show_prompt
   end
 
   def show_info
     parsed_show
-    puts ''
+    puts
     spinner = TTY::Spinner.new('[:spinner] Grabbing show details', format: :dots, success_mark: '+')
     spinner.auto_spin
     @output = []

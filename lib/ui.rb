@@ -17,25 +17,25 @@ module UserInterface
     @prompt = TTY::Prompt.new
     show = @prompt.select(@pastel.magenta('Select a TV show?' + @pastel.red(' (Filter only accepts 1 word)')), @shows, filter: true, per_page: 20, keys: [:return])
     @series_link = 'https://eztv.io' + @parsed_showlist.search('a').text_includes(show).attribute('href').value
-    puts ''
+    puts
     puts ' Fantastic Choice!'
-    puts ''
+    puts
     show_info
-    puts ''
+    puts
     episodes_info
   end
 
   def eztv_scrapper_info
-    puts ''
+    puts
     puts ' EZTV Scraper parses https://eztv.io and helps you download'
     puts ' the magnets of all available episodes into a JSON file.'
-    puts ''
+    puts
     puts ' As there are over 6500+ shows on the website, parsing them can'
     puts ' take a lot of time. To save time spent reviewing this project,'
     puts ' you are limited to only the Top 500 Shows of All Time (IMDb).'
-    puts ''
+    puts
     puts @pastel.red(' It may take about 3 minutes to parse all the data.')
-    puts ''
+    puts
     puts ' How about a bit of exurb1a in the meantime?'
     puts @pastel.blue(' https://www.youtube.com/watch?v=V_Ac-SVYI48')
   end
@@ -43,7 +43,7 @@ module UserInterface
   def choice_search
     choice = @prompt.yes?(' Would you like download another series?')
     if choice == true
-      puts ''
+      puts
       show_prompt
     elsif choice == false
       goodbye
@@ -51,13 +51,13 @@ module UserInterface
   end
 
   def goodbye
-    puts ''
+    puts
     puts @pastel.green('      ~ Thank you for using eztv-scraper! ~')
     puts @pastel.green(' ~ Star this project on Github if you liked it ~')
   end
 
   def continue_seq
-    puts ''
+    puts
     print ' Press any key to continue...'
     STDIN.getch
     puts "\n"

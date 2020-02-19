@@ -1,4 +1,4 @@
-require_relative '../bin/eztv-scraper.rb'
+require_relative '../lib/eztv_scraper/eztv_scraper'
 require_relative '../lib/ui.rb'
 require_relative '../lib/parser.rb'
 require_relative '../lib/shows.rb'
