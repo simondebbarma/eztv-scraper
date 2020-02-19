@@ -12,7 +12,7 @@ module Output
     local_file.close
     spinner.success(@pastel.blue('(✔)'))
     spinner.error(@pastel.red('(✖)'))
-    puts''
+    puts ''
     puts ' All Tasks Completed Successfully!'
     puts ''
     puts ' ---'

@@ -1,5 +1,4 @@
 module Showlist
-
   def showlist
     list_parser
     @shows = []

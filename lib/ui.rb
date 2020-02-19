@@ -43,10 +43,10 @@ module UserInterface
   def choice_search
     choice = @prompt.yes?(' Would you like download another series?')
     if choice == true
-        puts ''
-        show_prompt
+      puts ''
+      show_prompt
     elsif choice == false
-        goodbye
+      goodbye
     end
   end
 
