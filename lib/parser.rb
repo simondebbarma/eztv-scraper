@@ -12,7 +12,7 @@ module Parser
   end
 
   def parsed_show
-    spinner = TTY::Spinner.new('[:spinner] Searching the database!', format: :dots, success_mark: '+')
+    spinner = TTY::Spinner.new('[:spinner] Looking for episodes', format: :dots, success_mark: '+')
     spinner.auto_spin
     url = @series_link
     unparsed_page = HTTParty.get(url)
