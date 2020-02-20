@@ -1,4 +1,4 @@
-require_relative 'bin/eztv-scraper'
+require_relative 'bin/eztv_scraper'
 
 RSpec.describe EZTVScraper do
   before(:all) do
