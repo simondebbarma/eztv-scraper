@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name = 'eztv_scraper'
-    s.version = '0.1.5'
+    s.version = '0.1.6'
     s.licenses = ['GPL-3.0']
     s.date = %q{2020-02-20}
     s.summary = 'eztv_scraper looks for any selected show on eztv.io and saves magnet links of every single available episode into a JSON file.'
