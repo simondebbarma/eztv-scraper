@@ -10,10 +10,10 @@ require 'tty-spinner'
 require 'tty-font'
 require 'io/console'
 
-require_relative './EZTVScraper/user_interface'
-require_relative './EZTVScraper/parser'
-require_relative './EZTVScraper/showlist'
-require_relative './EZTVScraper/output'
+require_relative './eztv_scraper/user_interface'
+require_relative './eztv_scraper/parser'
+require_relative './eztv_scraper/showlist'
+require_relative './eztv_scraper/output'
 
 class EZTVScraper
   include UserInterface
