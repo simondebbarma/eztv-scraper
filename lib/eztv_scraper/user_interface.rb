@@ -32,8 +32,9 @@ class EZTVScraper
       puts ' the magnets of all available episodes into a JSON file.'
       puts
       puts ' As there are over 6500+ shows on the website, parsing them can'
-      puts ' take a lot of time. To save time spent reviewing this project,'
+      puts ' take a lot of time. To save time when using this project,'
       puts ' you are limited to only the Top 500 Shows of All Time (IMDb).'
+      puts ' Check the README for instructions on changing the parameter.'
       puts
       puts @pastel.red(' It may take about 3 minutes to parse all the data.')
       puts

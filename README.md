@@ -2,6 +2,16 @@
 
 > EZTV-Scraper looks for any selected show on eztv.io and saves magnet links of every single available episode  into a JSON file.
 
+## Quick Start
+
+Install the gem from RubyGems
+`gem install eztv_scraper`
+
+Run it anywhere
+`eztv_scraper`
+
+---
+
 ![Welcome](https://imgur.com/rhkE4jp.png)
 
 The app heavily uses assets from TTY to beautify the interface.

@@ -1,6 +1,10 @@
-require_relative 'bin/eztv_scraper'
+require_relative '../lib/eztv_scraper'
+require_relative '../lib/eztv_scraper/user_interface'
+require_relative '../lib/eztv_scraper/parser'
+require_relative '../lib/eztv_scraper/showlist'
+require_relative '../lib/eztv_scraper/output'
 
-RSpec.describe EZTVScraper do
+describe EZTVScraper do
   before(:all) do
     @eztv = EZTVScraper.new
   end
