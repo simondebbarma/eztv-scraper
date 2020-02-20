@@ -5,8 +5,8 @@ module Showlist
     complete = @pastel.on_green(' ')
     incomplete = @pastel.on_red(' ')
     # all_shows =  @output.css('td.forum_thread_post').count / 3
-    bar = TTY::ProgressBar.new('Grabbing your favorite shows [:bar]', total: 5, width: 50, complete: complete, incomplete: incomplete)
-    5.times do |n|
+    bar = TTY::ProgressBar.new('Grabbing your favorite shows [:bar]', total: 500, width: 50, complete: complete, incomplete: incomplete)
+    500.times do |n|
       @shows << @parsed_showlist.css('td.forum_thread_post')[n * 3].text
       bar.advance(1)
     end
