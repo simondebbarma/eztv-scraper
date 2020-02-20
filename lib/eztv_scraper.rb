@@ -26,5 +26,3 @@ class EZTVScraper
     welcome
   end
 end
-
-EZTVScraper.new
