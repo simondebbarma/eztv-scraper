@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/eztv_scraper'
+
+EZTVScraper.new
