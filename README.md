@@ -3,11 +3,30 @@
 > EZTV-Scraper looks for any selected show on eztv.io and saves magnet links of every single available episode  into a JSON file.
 
 ![Welcome](https://imgur.com/rhkE4jp.png)
-![screenshot](https://imgur.com/YdQC0Iu.png)
-![screenshot](https://imgur.com/MHlgxy1.png)
-![screenshot](https://imgur.com/IMB9mgL.png)
 
-Additional description about the project and its features.
+The app heavily uses assets from TTY to beautify the interface.
+
+![welcome code](https://imgur.com/EGjUZD7.png)
+
+Most of the app doesn't pass any values or parameters to each other. They simply take your selections and downloads the data you want.
+
+![Parsing the page](https://imgur.com/YdQC0Iu.png)
+
+This module parses the websites.
+
+![enter image description here](https://imgur.com/NXXTvhZ.png)
+
+As there are over 6500 shows listed on EZTV, I've filtered the program to parse only the Top 500 show, as ranked by IMDb. You can easily change this in the `./lib/eztv-scraper/ui.rb` file, by changing the loop to the number of shows you want. If you want the app to parse the entire site, you need to change `500` to `all_shows`  and un-comment when we declare `all_shows`
+
+![List of Options](https://imgur.com/MHlgxy1.png)![Showlist](https://imgur.com/qfPEPb7.png)
+
+The app goes through a sequence of methods to grab parse a new page, look for episodes, and downloads them into a file.
+
+![Downloading](https://imgur.com/IMB9mgL.png)
+
+Here's how a JSON file looks like of the scraped page. The first item is a hash of details on the show, and every following item is a hash of every available episode.
+
+![JSON](https://imgur.com/G99jav0.png)
 
 
 
@@ -49,7 +68,6 @@ In your terminal, run this command.
 ```
 $ ruby bin/eztv-scraper.rb
 ```
-
 ### Run tests
 ```
 $ gem install rspec
@@ -81,3 +99,4 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 This project is [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) licensed.
+
