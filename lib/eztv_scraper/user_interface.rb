@@ -5,7 +5,7 @@ class EZTVScraper
       subtitlefont = TTY::Font.new(:straight)
       puts @pastel.blue(titlefont.write(' EZTV'))
       puts @pastel.blue(titlefont.write(' Scraper'))
-      puts @pastel.blue(titlefont.write('                                      v0.1.0'))
+      puts @pastel.blue(titlefont.write('                                      v0.1.5'))
       sleep(2)
       puts @pastel.red(subtitlefont.write(' Fork me on GitHub'))
       puts @pastel.yellow(' https://github.com/simonpeterdebbarma/eztv-scraper')

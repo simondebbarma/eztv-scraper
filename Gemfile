@@ -1,12 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'byebug'
-gem 'httparty'
-gem 'json'
-gem 'nikkou'
-gem 'nokogiri'
-gem 'pastel'
-gem 'tty-font'
-gem 'tty-progressbar'
-gem 'tty-prompt'
-gem 'tty-spinner'
+gemspec
