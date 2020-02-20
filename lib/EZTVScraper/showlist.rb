@@ -14,7 +14,7 @@ class EZTVScraper
       puts
       show_prompt
     end
-  
+
     def show_info
       parsed_show
       puts
@@ -31,7 +31,7 @@ class EZTVScraper
       spinner.success(@pastel.blue('(✔)'))
       spinner.error(@pastel.red('(✖)'))
     end
-  
+
     def episodes_info
       spinner = TTY::Spinner.new('[:spinner] Pulling magnets', format: :dots, success_mark: '+')
       spinner.auto_spin

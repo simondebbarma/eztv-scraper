@@ -11,7 +11,7 @@ class EZTVScraper
       spinner.error(@pastel.red('(✖)'))
       puts
     end
-  
+
     def parsed_show
       spinner = TTY::Spinner.new('[:spinner] Looking for episodes', format: :dots, success_mark: '+')
       spinner.auto_spin

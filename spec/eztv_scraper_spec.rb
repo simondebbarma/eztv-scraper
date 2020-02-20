@@ -1,11 +1,13 @@
-require_relative '../lib/eztv_scraper'
-require_relative '../lib/eztv_scraper/ui.rb'
-require_relative '../lib/eztv_scraper/parser.rb'
-require_relative '../lib/eztv_scraper/shows.rb'
-require_relative '../lib/eztv_scraper/json.rb'
+require_relative 'bin/eztv-scraper'
 
-describe EZTVScraper do
+RSpec.describe EZTVScraper do
   before(:all) do
-    @EZTV = EZTVScraper.new
+    @eztv = EZTVScraper.new
+  end
+
+  describe 'showlist' do
+    it 'create an array called shows' do
+      expect(@shows).to be_an Array
+    end
   end
 end
