@@ -14,10 +14,10 @@ describe 'UserInterface' do
 
   describe '#welcome' do
     let(:output) { capture_output { welcome } }
-    it 'Go to a web page and grab the html content ' do
+    it 'print welcome ' do
       expect(output).to include(' EZTV')
       expect(output).to include(' Scraper')
-      expect(output).to include(' v0.1.5')
+      expect(output).to include(' v0.1.6')
       expect(output).to include(' Fork me on GitHub')
       expect(output).to include(' https://github.com/simonpeterdebbarma/eztv-scraper')
     end
@@ -25,7 +25,7 @@ describe 'UserInterface' do
 
   describe '#eztv_scrapper_info' do
     let(:output) { capture_output { eztv_scrapper_info } }
-    it 'Go to a web page and grab the html content ' do
+    it 'print intro text ' do
         expect(output).to include(' EZTV Scraper parses https://eztv.io and helps you download')
         expect(output).to include(' the magnets of all available episodes into a JSON file.')
         expect(output).to include(' As there are over 6500+ shows on the website, parsing them can')

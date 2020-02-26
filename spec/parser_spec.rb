@@ -5,7 +5,7 @@ describe 'Parser' do
   let(:series_link) {'https://eztv.io/shows/885/brooklyn-nine-nine'}
     
   describe '#list_parser' do
-    it 'Go to a web page and grab the html content ' do
+    it 'parse EZTV main site ' do
       expect{list_parser}.to_not raise_error
     end
   end
