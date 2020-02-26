@@ -4,11 +4,18 @@
 
 ## Quick Start
 
+**RubyGems**
+https://rubygems.org/gems/eztv_scraper
+
 Install the gem from RubyGems
-`gem install eztv_scraper`
+```
+$ gem install eztv_scraper
+```
 
 Run it anywhere
-`eztv_scraper`
+```
+$ eztv_scraper
+```
 
 ---
 
