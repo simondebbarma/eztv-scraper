@@ -58,8 +58,6 @@ Here's how a JSON file looks like of the scraped page. The first item is a hash 
 - [json](https://rubygems.org/gems/json/versions/1.8.3)
 - [byebug](https://github.com/deivid-rodriguez/byebug)
 - [rspec](https://github.com/rspec/rspec)
-- [vcr](https://github.com/vcr/vcr)
-
 
 ## Getting Started
 
@@ -80,11 +78,23 @@ This command will install all necessary gems into your system to run this app.
 $ bundle install
 ```
 
+You can also install using RubyGems
+```
+$ gem install eztv_scraper
+```
+
 ### Usage/Deployment
-In your terminal, run this command.
+In your terminal, run this command in the repository,
 ```
-$ ruby bin/eztv-scraper.rb
+$ ruby bin/eztv-scraper
 ```
+
+Or, use the following command (watch out for the underscore) to run it anywhere on your computer!
+```
+$ eztv_scraper
+```
+
+
 ### Run tests
 ```
 $ gem install rspec

@@ -2,7 +2,7 @@
   def welcome
     puts ' EZTV'
     puts ' Scraper'
-    puts ' v0.1.5'
+    puts ' v0.1.6'
     puts ' Fork me on GitHub'
     puts ' https://github.com/simonpeterdebbarma/eztv-scraper'
   end
