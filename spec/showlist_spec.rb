@@ -4,7 +4,6 @@ require 'tty-progressbar'
 require 'nokogiri'
 require 'httparty'
 
-
 describe 'Showlist' do
   include Showlist
   include Parser
@@ -16,7 +15,7 @@ describe 'Showlist' do
   end
 
   describe '#show_info' do
-    let(:series_link){'https://eztv.io/shows/885/brooklyn-nine-nine'}
+    let(:series_link) { 'https://eztv.io/shows/885/brooklyn-nine-nine' }
 
     it 'grabs info about show and create an object hash' do
       expect(show_info(series_link).count).to be >= 1
@@ -24,7 +23,7 @@ describe 'Showlist' do
   end
 
   describe '#episodes_info' do
-    let(:series_link){'https://eztv.io/shows/885/brooklyn-nine-nine'}
+    let(:series_link) { 'https://eztv.io/shows/885/brooklyn-nine-nine' }
 
     it 'grabs episodes and push details into output' do
       expect(episodes_info(series_link).count).to be >= 1

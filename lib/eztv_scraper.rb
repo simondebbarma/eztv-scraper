@@ -30,7 +30,7 @@ class EZTVScraper
 
   def scraper
     list_parser
-    show_prompt 
+    show_prompt
     search_link
     series_link = @series_link
     parsed_show(series_link)

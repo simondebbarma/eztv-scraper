@@ -1,4 +1,4 @@
- module UserInterface  
+module UserInterface
   def welcome
     puts ' EZTV'
     puts ' Scraper'
