@@ -24,5 +24,17 @@ class EZTVScraper
   def initialize
     @pastel = Pastel.new
     welcome
+    eztv_scrapper_info
+    scraper
+  end
+
+  def scraper
+    list_parser
+    show_prompt
+    search_link
+    series_link = @series_link
+    parsed_show(series_link)
+    episodes_info(series_link)
+    json_output
   end
 end

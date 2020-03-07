@@ -8,4 +8,15 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.expect_with(:rspec) { |c| c.syntax = :should, :expect }
+end
+
+def capture_output
+  old_stdout = $stdout
+  $stdout = StringIO.new('', 'w')
+  yield
+  $stdout.string
+ensure
+  $stdout = old_stdout
 end
