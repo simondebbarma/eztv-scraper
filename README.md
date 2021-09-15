@@ -16,19 +16,15 @@ Run it anywhere
 
 The app heavily uses assets from TTY to beautify the interface.
 
-![welcome code](https://imgur.com/EGjUZD7.png)
-
 Most of the app doesn't pass any values or parameters to each other. They simply take your selections and downloads the data you want.
 
 ![Parsing the page](https://imgur.com/YdQC0Iu.png)
 
 This module parses the websites.
 
-![enter image description here](https://imgur.com/NXXTvhZ.png)
-
 As there are over 6500 shows listed on EZTV, I've filtered the program to parse only the Top 500 show, as ranked by IMDb. You can easily change this in the `./lib/eztv-scraper/ui.rb` file, by changing the loop to the number of shows you want. If you want the app to parse the entire site, you need to change `500` to `all_shows`  and un-comment when we declare `all_shows`
 
-![List of Options](https://imgur.com/MHlgxy1.png)![Showlist](https://imgur.com/qfPEPb7.png)
+![List of Options](https://imgur.com/MHlgxy1.png)
 
 The app goes through a sequence of methods to grab parse a new page, look for episodes, and downloads them into a file.
 
@@ -84,13 +80,6 @@ $ gem install rspec
 $ rspec
 ```
 
-## Authors
-
-👤 **Simon Peter Debbarma**
-
-- Github: [@simonpeterdebbarma](https://github.com/simonpeterdebbarma)
-- Twitter: [@SimonLikelySaid](https://twitter.com/SimonLikelySaid)
-- Linkedin: [Simon](https://www.linkedin.com/in/simon-peter-debbarma/)
 
 ## 🤝 Contributing
 
@@ -98,13 +87,6 @@ Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues page](issues/).
 
-## Show your support
-
-Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- [Microverse](https://www.microverse.org/)
 
 ## 📝 License
 
