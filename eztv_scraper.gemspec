@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
     ]
     s.require_paths = ['lib']
 
-    s.add_dependency 'httparty', '~> 0.17.3'
+    s.add_dependency 'httparty', '>= 0.17.3', '< 0.22.0'
     s.add_dependency 'json', '~> 2.3.0'
     s.add_dependency 'nikkou', '~> 0.0.5'
     s.add_dependency 'nokogiri', '~> 1.10.8'
